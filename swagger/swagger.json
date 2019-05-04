@@ -1,0 +1,210 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/equipos/registrarEquipo": {
+            "post": {
+                "tags": [
+                    "equipos"
+                ],
+                "operationId": "EquipoController.Registrar equipo",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Postpais content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Equipo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Equipo"
+                        }
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/equiposgetEquipos/": {
+            "get": {
+                "tags": [
+                    "equipos"
+                ],
+                "description": "get Equipos",
+                "operationId": "EquipoController.Get Equipos",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Equipo"
+                        }
+                    },
+                    "403": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/equiposgetLugar/": {
+            "get": {
+                "tags": [
+                    "equipos"
+                ],
+                "description": "get Lugar",
+                "operationId": "EquipoController.Get Lugar",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "res models.Ciudad"
+                    },
+                    "403": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/lugares/postPais": {
+            "post": {
+                "tags": [
+                    "lugares"
+                ],
+                "operationId": "LugaresController.Post Pais",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Postpais content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Pais"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pais"
+                        }
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/lugaresgetLugares/": {
+            "get": {
+                "tags": [
+                    "lugares"
+                ],
+                "description": "get Lugares",
+                "operationId": "LugaresController.Get Lugares",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Ciudad"
+                        }
+                    },
+                    "403": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Ciudad": {
+            "title": "Ciudad",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "PaisId": {
+                    "$ref": "#/definitions/models.Pais"
+                }
+            }
+        },
+        "models.Equipo": {
+            "title": "Equipo",
+            "type": "object",
+            "properties": {
+                "CiudadId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Pais": {
+            "title": "Pais",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "lugares",
+            "description": "LugaresController operations for Ciudad\n"
+        },
+        {
+            "name": "equipos",
+            "description": "LugaresController operations for equipo\n"
+        }
+    ]
+}
