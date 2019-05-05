@@ -70,10 +70,10 @@ func (c *EquipoController) RegistrarEquipo() {
 
 					beego.Info("Post data: ", res)
 					c.Data["json"] = res
-					for data := range res {
-						beego.Info("data res:", data)
-						beego.Info(res[data])
-					}
+					// for data := range res {
+					// 	beego.Info("data res:", data)
+					// 	beego.Info(res[data])
+					// }
 					idEquipo := fmt.Sprintf("%v", res["Id"])
 					posicion := c.PostPosiciones(idEquipo)
 					beego.Info("posicion: ", posicion)
@@ -93,45 +93,6 @@ func (c *EquipoController) RegistrarEquipo() {
 		c.Data["json"] = models.AlertError{Code: "E_0458", Body: e, Type: "error"}
 	})
 	c.ServeJSON()
-	// beego.Info("id ciudad: ", idCiudad)
-	// beego.Info("entro a Registrar Equipo")
-	// ciudad := c.GetCiudadById(idCiudad)[0]
-	// beego.Info("ciudades", ciudad)
-	// if ciudad.Id != 0 {
-	// 	beego.Info("existe la ciudad")
-	// 	try.This(func() {
-	// 		var equipo models.Equipo
-	// 		Urlcrud := beego.AppConfig.String("UrlEquipoCrud") + "equipo"
-	// 		beego.Info("URL ", Urlcrud)
-	// 		request.SendJson(Urlcrud, "POST", nil, &equipo)
-	// 		c.ServeJSON()
-	// 	}).Catch(func(e try.E) {
-	// 		beego.Info("excep: ", e)
-	// 		c.Data["json"] = models.AlertError{Code: "E_0458", Body: e, Type: "error"}
-	// 	})
-	// } else {
-	// 	beego.Info("no ciudad existe")
-	// 	c.Data["json"] = models.AlertString{Type: "error", Code: "E_0458", Body: "No existe la ciudad"}
-	// }
-
-	// try.This(func() {
-	// 	var v models.Pais
-	// 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-	// 		Urlcrud := beego.AppConfig.String("UrlLugaresCrud") + "pais"
-	// 		beego.Info("URL ", Urlcrud)
-	// 		if err := request.SendJson(Urlcrud, "POST", nil, &v); err == nil {
-	// 			c.Data["json"] = err
-	// 		} else {
-	// 			panic(err.Error())
-	// 		}
-	// 	} else {
-	// 		c.Data["json"] = err.Error()
-	// 	}
-	// }).Catch(func(e try.E) {
-	// 	beego.Info("excep: ", e)
-	// 	//c.Data["json"] = models.Alert{Code: "E_0458", Body: e, Type: "error"}
-	// })
-
 }
 
 func (c *EquipoController) GetCiudadById(idCiudad string) (res []models.Ciudad) {
@@ -149,7 +110,7 @@ func (c *EquipoController) PostPosiciones(idEquipo string) (res map[string]inter
 	var posicion models.Posicion
 	idEquipoiInt, nil := strconv.Atoi(idEquipo)
 	posicion.Id = 0
-	posicion.Puesto = 1
+	posicion.Puntaje = 0
 
 	posicion.EquipoId = idEquipoiInt
 	posicion.PartidosJugados = 0

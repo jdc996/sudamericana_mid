@@ -2,7 +2,7 @@ package models
 
 type Posicion struct {
 	Id                int
-	Puesto            int
+	Puntaje           int
 	EquipoId          int
 	PartidosJugados   int
 	PartidosGanados   int

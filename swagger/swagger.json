@@ -90,20 +90,20 @@
                 }
             }
         },
-        "/lugares/postPais": {
+        "/partidos/registrarPartido": {
             "post": {
                 "tags": [
-                    "lugares"
+                    "partidos"
                 ],
-                "operationId": "LugaresController.Post Pais",
+                "operationId": "PartidosController.Registrar Partido",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Postpais content",
+                        "description": "body for registrar partido content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Pais"
+                            "$ref": "#/definitions/models.Partido"
                         }
                     }
                 ],
@@ -111,7 +111,7 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Pais"
+                            "$ref": "#/definitions/models.Partidos"
                         }
                     },
                     "403": {
@@ -120,26 +120,18 @@
                 }
             }
         },
-        "/lugaresgetLugares/": {
+        "/partidosGetPartidos/": {
             "get": {
                 "tags": [
-                    "lugares"
+                    "partidos"
                 ],
-                "description": "get Lugares",
-                "operationId": "LugaresController.Get Lugares",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    }
-                ],
+                "description": "get Partidos",
+                "operationId": "PartidosController.Get Partidos",
                 "responses": {
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Ciudad"
+                            "$ref": "#/definitions/models.Partidos"
                         }
                     },
                     "403": {
@@ -150,22 +142,6 @@
         }
     },
     "definitions": {
-        "models.Ciudad": {
-            "title": "Ciudad",
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Nombre": {
-                    "type": "string"
-                },
-                "PaisId": {
-                    "$ref": "#/definitions/models.Pais"
-                }
-            }
-        },
         "models.Equipo": {
             "title": "Equipo",
             "type": "object",
@@ -183,28 +159,49 @@
                 }
             }
         },
-        "models.Pais": {
-            "title": "Pais",
+        "models.Partido": {
+            "title": "Partido",
+            "type": "object"
+        },
+        "models.Partidos": {
+            "title": "Partidos",
             "type": "object",
             "properties": {
-                "Id": {
+                "EquipoLocalId": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Nombre": {
-                    "type": "string"
+                "EquipoVisitanteId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Fecha": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "GolesLocal": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "GolesVisitante": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         }
     },
     "tags": [
         {
-            "name": "lugares",
-            "description": "LugaresController operations for Ciudad\n"
-        },
-        {
             "name": "equipos",
             "description": "LugaresController operations for equipo\n"
+        },
+        {
+            "name": "partidos",
+            "description": "PartidosController operations for partidos\n"
         }
     ]
 }

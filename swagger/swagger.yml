@@ -1,0 +1,138 @@
+swagger: "2.0"
+info:
+  title: beego Test API
+  description: beego has a very cool tools to autogenerate documents for your API
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /equipos/registrarEquipo:
+    post:
+      tags:
+      - equipos
+      operationId: EquipoController.Registrar equipo
+      parameters:
+      - in: body
+        name: body
+        description: body for Postpais content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Equipo'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Equipo'
+        "403":
+          description: body is empty
+  /equiposgetEquipos/:
+    get:
+      tags:
+      - equipos
+      description: get Equipos
+      operationId: EquipoController.Get Equipos
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Equipo'
+        "403":
+          description: not found resource
+  /equiposgetLugar/:
+    get:
+      tags:
+      - equipos
+      description: get Lugar
+      operationId: EquipoController.Get Lugar
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      responses:
+        "200":
+          description: res models.Ciudad
+        "403":
+          description: not found resource
+  /partidos/registrarPartido:
+    post:
+      tags:
+      - partidos
+      operationId: PartidosController.Registrar Partido
+      parameters:
+      - in: body
+        name: body
+        description: body for registrar partido content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Partido'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Partidos'
+        "403":
+          description: body is empty
+  /partidosGetPartidos/:
+    get:
+      tags:
+      - partidos
+      description: get Partidos
+      operationId: PartidosController.Get Partidos
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Partidos'
+        "403":
+          description: not found resource
+definitions:
+  models.Equipo:
+    title: Equipo
+    type: object
+    properties:
+      CiudadId:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.Partido:
+    title: Partido
+    type: object
+  models.Partidos:
+    title: Partidos
+    type: object
+    properties:
+      EquipoLocalId:
+        type: integer
+        format: int64
+      EquipoVisitanteId:
+        type: integer
+        format: int64
+      Fecha:
+        type: string
+        format: datetime
+      GolesLocal:
+        type: integer
+        format: int64
+      GolesVisitante:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+tags:
+- name: equipos
+  description: |
+    LugaresController operations for equipo
+- name: partidos
+  description: |
+    PartidosController operations for partidos

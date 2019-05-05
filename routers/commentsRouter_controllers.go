@@ -52,4 +52,22 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/jdc996/sudamericana_mid/controllers:PartidosController"] = append(beego.GlobalControllerRouter["github.com/jdc996/sudamericana_mid/controllers:PartidosController"],
+        beego.ControllerComments{
+            Method: "RegistrarPartido",
+            Router: `/registrarPartido`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/jdc996/sudamericana_mid/controllers:PartidosController"] = append(beego.GlobalControllerRouter["github.com/jdc996/sudamericana_mid/controllers:PartidosController"],
+        beego.ControllerComments{
+            Method: "GetPartidos",
+            Router: `GetPartidos/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
 }
